@@ -1,12 +1,12 @@
 import { STATUS_INTERNAL, STATUS_OK } from "./../config/constants";
 import { Request, Response } from "express";
 import apiResponseDto from "../dtos/apiResponseDto";
-import exampleAction from "../action/exampleAction";
+import exampleService from "../services/exampleService";
 
-class ExampleController {
+class ExampleAction {
   getHello(req: Request, res: Response) {
     try {
-      const result = exampleAction.getHello(req,res);
+      const result = exampleService.getHello(req.body);
       apiResponseDto.success(res, STATUS_OK, result);
     } catch (error) {
       apiResponseDto.error(res, STATUS_INTERNAL, error);
@@ -14,4 +14,4 @@ class ExampleController {
   }
 }
 
-export default new ExampleController();
+export default new ExampleAction();
